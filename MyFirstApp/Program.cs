@@ -1,10 +1,17 @@
 ﻿// See https://aka.ms/new-console-template for more information
-string MyName = "Jane";
-byte MyAge = 27;
-bool HaveIApet = true;
-double MyShoeSize = 37.5;
 
-Console.WriteLine("My name is " + MyName);
-Console.WriteLine("MyAge " + MyAge);
-Console.WriteLine("Do I have a pet? " + HaveIApet);
-Console.WriteLine("My shoe size is " + MyShoeSize);
+Console.Write("Enter your name: ");
+var name = Console.ReadLine();
+Console.Write("Enter your age: ");
+var age = checked((byte)int.Parse(Console.ReadLine()));
+Console.Write("When is your birhtday? ");
+var birthday = Console.ReadLine();
+Console.WriteLine($"Your name is {name}, age is {age} and your birthday is {birthday}");
+
+
+
+
+
+
+
+
