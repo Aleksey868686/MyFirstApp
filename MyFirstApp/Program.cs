@@ -1,15 +1,31 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.Write("Enter your name: ");
-var name = Console.ReadLine();
-Console.Write("Enter your age: ");
-var age = checked((byte)int.Parse(Console.ReadLine()));
-Console.Write("When is your birhtday? ");
-var birthday = Console.ReadLine();
-Console.WriteLine($"Your name is {name}, age is {age} and your birthday is {birthday}");
+Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
 
+var color = Console.ReadLine();
 
+if (color == "red")
+{
+    Console.BackgroundColor = ConsoleColor.Red;
+    Console.ForegroundColor = ConsoleColor.Black;
 
+    Console.WriteLine("Your color is red!");
+}
+
+else if (color == "green")
+{
+    Console.BackgroundColor = ConsoleColor.Green;
+    Console.ForegroundColor = ConsoleColor.Black;
+
+    Console.WriteLine("Your color is green!");
+}
+else
+{
+    Console.BackgroundColor = ConsoleColor.Cyan;
+    Console.ForegroundColor = ConsoleColor.Black;
+
+    Console.WriteLine("Your color is cyan!");
+}
 
 
 
