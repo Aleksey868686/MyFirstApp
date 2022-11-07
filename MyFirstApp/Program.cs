@@ -1,31 +1,27 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+var arr = new int[] { 5, 6, 9, 1, 2, 3, 4 };
+int buffer;
 
-var color = Console.ReadLine();
-
-if (color == "red")
+for (int i = 0; i < arr.Length; i++)
 {
-    Console.BackgroundColor = ConsoleColor.Red;
-    Console.ForegroundColor = ConsoleColor.Black;
-
-    Console.WriteLine("Your color is red!");
+    for (int j = i + 1; j < arr.Length; j++)
+    {
+        if (arr[i] > arr[j])
+        {
+            buffer = arr[i];
+            arr[i] = arr[j];
+            arr[j] = buffer;
+        }
+    }
 }
 
-else if (color == "green")
+foreach (int i in arr)
 {
-    Console.BackgroundColor = ConsoleColor.Green;
-    Console.ForegroundColor = ConsoleColor.Black;
-
-    Console.WriteLine("Your color is green!");
+    Console.Write(i);
 }
-else
-{
-    Console.BackgroundColor = ConsoleColor.Cyan;
-    Console.ForegroundColor = ConsoleColor.Black;
 
-    Console.WriteLine("Your color is cyan!");
-}
+
 
 
 
