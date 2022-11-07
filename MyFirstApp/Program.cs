@@ -1,29 +1,18 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-var arr = new int[] { 5, 6, 9, 1, 2, 3, 4 };
-int buffer;
+int[][] array = new int[3][];
 
-for (int i = 0; i < arr.Length; i++)
+array[0] = new int[2] { 1, 2 };
+array[1] = new int[3] { 1, 2, 3 };
+array[2] = new int[5] { 1, 2, 3, 4, 5 };
+
+foreach (var y in array)
 {
-    for (int j = i + 1; j < arr.Length; j++)
+    foreach (var x in y)
     {
-        if (arr[i] > arr[j])
-        {
-            buffer = arr[i];
-            arr[i] = arr[j];
-            arr[j] = buffer;
-        }
+        Console.Write(x + " ");
     }
+    Console.WriteLine();
 }
-
-foreach (int i in arr)
-{
-    Console.Write(i);
-}
-
-
-
-
-
 
 
