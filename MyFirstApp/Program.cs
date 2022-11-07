@@ -2,16 +2,29 @@
 
 int[,] arr = { { -5, 6, 9, 1, 2, -3 }, { -8, 8, 1, 1, 2, -3 } };
 
-int posNumQuantity = 0;
+int buffer = 0;
 
 for (int i = 0; i < arr.GetUpperBound(0) + 1; i++)
 {
     for (int j = 0; j < arr.GetUpperBound(1) + 1; j++)
     {
-        if (arr[i, j] > 0)
+        for (int f = j + 1; f < arr.GetLength(1); f++)
         {
-            posNumQuantity += 1;
+            if (arr[i, j] > arr[i, f])
+            {
+                buffer = arr[i, j];
+                arr[i, j] = arr[i, f];
+                arr[i, f] = buffer;
+            }
         }
     }
 }
-Console.WriteLine($"Количество положительных чисел: {posNumQuantity}");
+
+for (int i = 0; i < arr.GetUpperBound(0) + 1; i++)
+{
+    for (int j = 0; j < arr.GetUpperBound(1) + 1; j++)
+    {
+        Console.Write(arr[i, j] + "\t");
+    }
+    Console.WriteLine();
+}
