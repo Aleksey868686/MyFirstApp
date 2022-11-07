@@ -1,14 +1,17 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-var array = new sbyte[] { 1, 2, 3, -1, 5, -20, -3, 6 };
+int[,] arr = { { -5, 6, 9, 1, 2, -3 }, { -8, 8, 1, 1, 2, -3 } };
 
 int posNumQuantity = 0;
 
-for (int i = 0; i < array.Length; i++)
+for (int i = 0; i < arr.GetUpperBound(0) + 1; i++)
 {
-    if (array[i] > 0)
+    for (int j = 0; j < arr.GetUpperBound(1) + 1; j++)
     {
-        posNumQuantity += 1;
+        if (arr[i, j] > 0)
+        {
+            posNumQuantity += 1;
+        }
     }
 }
 Console.WriteLine($"Количество положительных чисел: {posNumQuantity}");
