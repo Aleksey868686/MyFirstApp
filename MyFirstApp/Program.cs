@@ -237,6 +237,7 @@ Echo(str, deep);
 Console.ReadKey();
 
 
+
 static void Echo(string saidworld, int deep)
 {
     var modif = saidworld;
@@ -244,6 +245,7 @@ static void Echo(string saidworld, int deep)
     {
         modif = modif.Remove(0, 2);
     }
+    Console.BackgroundColor = (ConsoleColor)deep;
     Console.WriteLine("..." + modif);
 
 
