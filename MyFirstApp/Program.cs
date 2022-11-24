@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-//(string Name, string Surname, string Login, int LoginLength, bool HasPet, int Age, string[] favColors) User;
+﻿//(string Name, string Surname, string Login, int LoginLength, bool HasPet, int Age, string[] favColors) User;
 
 //for (int i = 0; i < 3; i++)
 //{
@@ -15,7 +13,7 @@
 //    User.HasPet = Console.ReadLine() == "Да" ? true : false;
 //    Console.WriteLine($"Животные {User.HasPet}");
 //    Console.WriteLine("Введите возраст пользователя");
-//    User.Age = checked((byte)int.Parse(Console.ReadLine()));
+//    User.Age = checked((int)int.Parse(Console.ReadLine()));
 
 //    User.favColors = new string[3];
 //    Console.WriteLine("Введите три любимых цвета пользователя");
@@ -44,7 +42,7 @@
 //Console.Write("Enter pet's type: ");
 //Pet.Type = Console.ReadLine();
 //Console.Write("Enter pet's age: ");
-//Pet.Age = checked((byte)int.Parse(Console.ReadLine()));
+//Pet.Age = checked((int)int.Parse(Console.ReadLine()));
 //Pet.NameCount = Pet.Name.Length;
 //Console.WriteLine($"Your pet's name is {Pet.Name}, age is {Pet.Age}, type is {Pet.Type} and pet's nameCount: {Pet.NameCount}");
 
@@ -55,7 +53,7 @@
 //Console.Write("Enter your name: ");
 //name = Console.ReadLine();
 //Console.Write("Enter your age: ");
-//age = checked((byte)int.Parse(Console.ReadLine()));
+//age = checked((int)int.Parse(Console.ReadLine()));
 //Console.Write("When is your birhtday? ");
 //var birthday = Console.ReadLine();
 //Console.WriteLine($"Your name is {name}, age is {age} and your birthday is {birthday}");
@@ -226,32 +224,195 @@
 
 
 
-Console.WriteLine("Напишите что-то");
-var str = Console.ReadLine();
+//Console.WriteLine("Напишите что-то");
+//var str = Console.ReadLine();
 
-Console.WriteLine("Укажите глубину эха");
-var deep = int.Parse(Console.ReadLine());
+//Console.WriteLine("Укажите глубину эха");
+//var deep = int.Parse(Console.ReadLine());
 
-Echo(str, deep);
+//Echo(str, deep);
 
-Console.ReadKey();
+//Console.ReadKey();
 
 
 
-static void Echo(string saidworld, int deep)
+//static void Echo(string saidworld, int deep)
+//{
+//    var modif = saidworld;
+//    if (modif.Length > 2)
+//    {
+//        modif = modif.Remove(0, 2);
+//    }
+//    Console.BackgroundColor = (ConsoleColor)deep;
+//    Console.WriteLine("..." + modif);
+
+
+//    if (deep > 1)
+//    {
+//        Echo(modif, deep - 1);
+//    }
+//}
+
+
+
+//static decimal Factorial(int x)
+//{
+//    if (x == 0)
+//    {
+//        return 1;
+//    }
+//    else
+//    {
+//        return x * Factorial(x - 1);
+//    }
+//}
+//Console.WriteLine(Factorial(20));
+
+
+//static int PowerUp(int N, int pow)
+//{
+//    if (pow == 0)
+//    {
+//        return 1;
+//    }
+//    else
+//    {
+//        if (pow == 1)
+//        {
+//            return N;
+
+//        }
+//        else
+//        {
+//            return N * PowerUp(N, --pow);
+
+//        }
+//    }
+//}
+
+//Console.WriteLine(PowerUp(2, 3));
+
+internal class Program
 {
-    var modif = saidworld;
-    if (modif.Length > 2)
+    private static void Main(string[] args)
     {
-        modif = modif.Remove(0, 2);
-    }
-    Console.BackgroundColor = (ConsoleColor)deep;
-    Console.WriteLine("..." + modif);
+        static bool CheckNum(string number, out int correctNumber)
+        {
+            if (int.TryParse(number, out int intnum))
+            {
+                if (intnum > 0)
+                {
+                    correctNumber = intnum;
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Введите число больше нуля");
+                    correctNumber = 0;
+                    return true;
+                }
+            }
+            correctNumber = 0;
+            return true;
+        }
+
+        static (string name, string surname, int age, bool hasPet, int petsQuantity, string[] petsNickname, int favColors, string[] arrOfColors) CreateData()
+        {
+            (string name, string surname, int age, bool hasPet, int petsQuantity, string[] petsNickname, int favColors, string[] arrOfColors) DataTuple;
+            Console.WriteLine("Введите имя");
+            DataTuple.name = Console.ReadLine();
+
+            Console.WriteLine("Введите фамилию");
+            DataTuple.surname = Console.ReadLine();
+
+            string ageRead;
+            int intage;
+            do
+            {
+                Console.WriteLine("Введите возраст цифрами:");
+                ageRead = Console.ReadLine();
+            } while (CheckNum(ageRead, out intage));
+            DataTuple.age = intage;
+
+            Console.WriteLine("Есть ли у вас животные? Да или Нет");
+            DataTuple.hasPet = Console.ReadLine() == "Да" ? true : false;
 
 
-    if (deep > 1)
-    {
-        Echo(modif, deep - 1);
+            string petsQuant;
+            int intPetsQuant;
+            if (DataTuple.hasPet)
+            {
+                do
+                {
+                    Console.WriteLine("Сколько у Вас питомцев?");
+                    petsQuant = Console.ReadLine();
+                } while (CheckNum(petsQuant, out intPetsQuant));
+                DataTuple.petsQuantity = intPetsQuant;
+                DataTuple.petsNickname = ShowPetsNicknames(DataTuple.petsQuantity);
+
+            }
+            else
+            {
+                DataTuple.petsQuantity = 0;
+                DataTuple.petsNickname = ShowPetsNicknames(DataTuple.petsQuantity); ;
+            }
+
+
+            Console.WriteLine("Сколько у Вас любимых цветов?");
+            DataTuple.favColors = int.Parse(Console.ReadLine());
+            DataTuple.arrOfColors = ShowfavColors(DataTuple.favColors);
+
+            return DataTuple;
+        }
+
+        static void ShowTuple((string name, string surname, int age, bool hasPet, int petsQuantity, string[] petsNickname, int favColors, string[] arrOfColors) DataTuple)
+        {
+            Console.WriteLine($"Ваше имя: {DataTuple.name}");
+            Console.WriteLine($"Ваша фамилия: {DataTuple.surname}");
+            Console.WriteLine($"Ваш возраст {DataTuple.age}");
+            foreach (var item in DataTuple.petsNickname)
+            {
+                Console.WriteLine($"Ваши любимые животные: {item}");
+            }
+
+            foreach (var item in DataTuple.arrOfColors)
+            {
+                Console.WriteLine($"Ваши любимые цвета: {item}");
+            }
+        }
+
+        static string[] ShowPetsNicknames(int petsQuantity)
+        {
+
+            string[] petsNicknames = new string[petsQuantity];
+            if (petsQuantity > 0)
+            {
+                for (int i = 0; i < petsQuantity; i++)
+                {
+                    Console.WriteLine("Введите кличку");
+                    petsNicknames[i] = Console.ReadLine();
+                }
+                return petsNicknames;
+            }
+            else
+            {
+                var emptyArray = new string[] { "Нет животных - нет клички!" };
+                return emptyArray;
+            }
+
+        }
+
+        static string[] ShowfavColors(int favColorsQuantity)
+        {
+            string[] arrOfColors = new string[favColorsQuantity];
+            for (int i = 0; i < favColorsQuantity; i++)
+            {
+                Console.WriteLine("Введите любимый цвет:");
+                arrOfColors[i] = Console.ReadLine();
+            }
+            return arrOfColors;
+        }
+
+        ShowTuple(CreateData());
     }
 }
-
